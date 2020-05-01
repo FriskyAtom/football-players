@@ -42,7 +42,7 @@ exports.postAddPlayer = (req, res, next) => {
             errorMessage: 'Attached file is not an image.',
         });
     }
-
+    console.log(image.path);
     const imgUrl = image.path;
     //res.redirect('/players');
     const player = new Player(null, firstName, lastName, birthDate, nationality, imgUrl, team);

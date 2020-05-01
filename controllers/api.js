@@ -13,7 +13,6 @@ exports.apiIndex = (req, res, next) => {
 exports.getPlayers = (req, res, next) => {
     Player.fetchAll()
         .then(players => {
-            console.log(players);
             res.status(200).json(players)
         })
         .catch(err => {

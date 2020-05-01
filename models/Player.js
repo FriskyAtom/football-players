@@ -22,7 +22,6 @@ module.exports = class Player {
             dbOp = db.collection('players').insertOne(this);
         }
         return dbOp.then(result =>{
-            console.log(result);
         }).catch(err => {
             console.log(err);
         })
