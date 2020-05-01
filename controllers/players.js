@@ -50,7 +50,7 @@ exports.postAddPlayer = (req, res, next) => {
         .save()
         .then(result => {
             //console.log(result);
-            console.log('Created Product');
+            console.log('Created Player');
             res.redirect('/players');
         })
         .catch(err => {
@@ -67,7 +67,6 @@ exports.getEditPlayer = (req, res, next) => {
     }
     const playerId = req.params.playerId;
     Player.findById(playerId)
-        // Product.findById(prodId)
         .then(player => {
             if (!player) {
                 return res.redirect('/');
