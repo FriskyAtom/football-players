@@ -1,0 +1,24 @@
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
+
+a {
+  color: #00B7FF; }
+
+.navigation {
+  color: #ffffff;
+  background-color: #1b7700; }
+
+.player-card {
+  background-color: #7aa23a85; }
+  .player-card__img {
+    width: 100%;
+    height: auto; }
+  .player-card__info {
+    padding: .5rem; }
+  .player-card__name {
+    font-weight: 600;
+    text-align: center;
+    padding: .5rem 0;
+    letter-spacing: 1.5px; }
+
+/*# sourceMappingURL=style.css.map */

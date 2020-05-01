@@ -1,0 +1,30 @@
+extends ../layouts/layout
+
+block content
+    include ../layouts/navigation
+    main.container.align-content-center
+        h1.mt-5 #{pageTitle}
+        form(method="POST" action=(editing ? "/players/edit" : "/players/add") enctype="multipart/form-data")
+            div.form-group
+                label(for="firstName") Jméno
+                input.form-control(type="text" name="firstName" id="firstName" value=(editing ? player.firstName : ''))
+            div.form-group
+                label(for="lastName") Příjmení
+                input.form-control(type="text" name="lastName" id="lastName" value=(editing ? player.lastName : ''))
+            div.form-group
+                label(for="birthDate") Datum Narození
+                input.form-control(type="date" name="birthDate" id="birthDate" value=(editing ? player.birthDate : ''))
+            div.form-group
+                label(for="nationality") Národnost
+                input.form-control(type="text" name="nationality" id="nationality" value=(editing ? player.nationality : ''))
+            div.form-group
+                label(for='image') Obrázek
+                input.form-control(type="file" name="image" id="image")
+            div.form-group
+                label(for="imgURL") Tým
+                input.form-control(type="text" name="team" id="team" value=(editing ? player.team : ''))
+            if editing
+                input(type="hidden" value=player._id  name="playerId")
+
+            button.btn.btn-success(type="submit") Přidat hráče
+

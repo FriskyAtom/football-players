@@ -1,0 +1,25 @@
+extends ../layouts/layout
+
+block content
+    include ../layouts/navigation
+    main.container-fluid
+        a.badge.badge-info.mt-3(href="/players/add") Přidat hráče
+        h1.mt-2 Seznam hráčů
+        if players.length > 0
+            div.row
+                each player in players
+                    div.col-lg-3.col-md-3
+                        div.player-card
+                            img.player-card__img(src='/'+player.imgUrl alt=player.lastName)
+                            div.player-card__info
+                                div.player-card__name #{player.firstName} #{player.lastName}
+                                div.player-card__nationality Narodnost: #{player.nationality}
+                                div.player-card__birthDate Datum narozeni: #{player.birthDate}
+                                div.player-card__team Tym: #{player.team}
+                                form(action="/players/delete" method="POST")
+                                    input(type="hidden" value=player._id name="playerId")
+                                    button.btn.btn-danger(type="submit") Odebrat hrace
+                                a.btn.btn-secondary(href='/players/edit/' + player._id + '?edit=true') Upravit hrace
+
+        else
+            p V databázi nejsou žádní hráči
