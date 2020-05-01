@@ -51,8 +51,24 @@ app.use(sassMiddleware({
   indentedSyntax: true, // true = .sass and false = .scss
   sourceMap: true
 }));
-app.use(express.static(path.join(__dirname, 'public')));
-app.use('/images', express.static(path.join(__dirname, 'images')));
+app.use(express.static(path.join(__dirname, 'public'), {
+  etag: true, // Just being explicit about the default.
+  lastModified: true,  // Just being explicit about the default.
+  setHeaders: (res, path) => {
+    if (path.endsWith('.html')) {
+      // All of the project's HTML files end in .html
+      res.setHeader('Cache-Control', 'no-cache');
+    }
+  },
+}));
+
+app.use('/images', express.static(path.join(__dirname, 'images'),{
+  etag: true, // Just being explicit about the default.
+  lastModified: true,  // Just being explicit about the default.
+  setHeaders: (res, path) => {
+    res.setHeader('Cache-Control', 'max-age=31536000');
+  },
+}));
 app.use(express.static(path.join(__dirname, 'node_modules')));
 
 app.use((req, res, next) => {
