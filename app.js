@@ -1,7 +1,6 @@
 const express = require('express');
 const path = require('path');
 const multer = require('multer');
-//var cookieParser = require('cookie-parser');
 const sassMiddleware = require('node-sass-middleware');
 
 const errorController = require('./controllers/error');
@@ -67,6 +66,7 @@ app.use('/images', express.static(path.join(__dirname, 'images'),{
   lastModified: true,  // Just being explicit about the default.
   setHeaders: (res, path) => {
     res.setHeader('Cache-Control', 'max-age=31536000');
+    res.setHeader('Server', 'Heroku');
   },
 }));
 app.use(express.static(path.join(__dirname, 'node_modules')));
