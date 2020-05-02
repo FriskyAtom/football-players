@@ -58,6 +58,8 @@ app.use(express.static(path.join(__dirname, 'public'), {
       // All of the project's HTML files end in .html
       res.setHeader('Cache-Control', 'no-cache');
     }
+    res.setHeader('Cache-Control', 'max-age=31536000');
+    res.setHeader('Server', 'Heroku');
   },
 }));
 
@@ -65,7 +67,6 @@ app.use('/images', express.static(path.join(__dirname, 'images'),{
   etag: true, // Just being explicit about the default.
   lastModified: true,  // Just being explicit about the default.
   setHeaders: (res, path) => {
-    res.setHeader('Cache-Control', 'max-age=31536000');
     res.setHeader('Server', 'Heroku');
   },
 }));
